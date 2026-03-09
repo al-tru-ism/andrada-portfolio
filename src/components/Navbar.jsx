@@ -1,7 +1,17 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Shield, Terminal } from "lucide-react";
+import { Menu, X, Shield, Terminal, Home, User, FolderKanban, Cpu, Award, BookOpen, Mail } from "lucide-react";
 import { navLinks } from "../data/portfolioData";
+
+const navIcons = {
+  Home: Home,
+  About: User,
+  Projects: FolderKanban,
+  Skills: Cpu,
+  Certifications: Award,
+  Blog: BookOpen,
+  Contact: Mail,
+};
 
 /**
  * Navbar — Premium sticky navigation bar with frosted glass effect,
@@ -42,7 +52,7 @@ export default function Navbar() {
             : "bg-transparent border-b border-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 h-16">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-8 h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 group">
             <div className="relative">
@@ -52,41 +62,45 @@ export default function Navbar() {
               />
               <div className="absolute inset-0 bg-[#00e5ff]/20 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <span className="text-lg font-bold font-[Poppins] tracking-wide text-white">
+            <span className="text-xl font-bold font-[Poppins] tracking-wide text-white">
               Andrada<span className="text-[#00e5ff]">.</span>
             </span>
           </Link>
 
           {/* Desktop Links */}
-          <ul className="hidden lg:flex items-center gap-0.5">
-            {navLinks.map((link) => (
+          <ul className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const Icon = navIcons[link.name];
+              return (
               <li key={link.name}>
                 <Link
                   to={link.path}
-                  className={`relative px-4 py-2 rounded-lg text-[13px] font-medium transition-all duration-300 ${
+                  className={`relative flex items-center gap-2 px-5 py-2.5 rounded-lg text-[15px] font-medium transition-all duration-300 ${
                     isActive(link.path)
                       ? "text-[#00e5ff]"
                       : "text-[#64748b] hover:text-[#e2e8f0]"
                   }`}
                 >
+                  {Icon && <Icon size={16} />}
                   {link.name}
                   {/* Active indicator dot */}
                   {isActive(link.path) && (
-                    <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#00e5ff] shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
+                    <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-[#00e5ff] shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
                   )}
                 </Link>
               </li>
-            ))}
+              );
+            })}
           </ul>
 
           {/* Resume button (desktop) */}
           <a
             href="/resume.pdf"
             download
-            className="hidden lg:flex items-center gap-2 px-4 py-1.5 rounded-lg border border-[#00e5ff]/30 text-[#00e5ff] text-xs font-medium
+            className="hidden lg:flex items-center gap-2 px-5 py-2 rounded-lg border border-[#00e5ff]/30 text-[#00e5ff] text-sm font-medium
                        hover:bg-[#00e5ff]/10 hover:border-[#00e5ff]/60 transition-all duration-300"
           >
-            <Terminal size={12} />
+            <Terminal size={14} />
             Resume
           </a>
 
@@ -150,7 +164,7 @@ export default function Navbar() {
                 >
                   <Link
                     to={link.path}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-300 ${
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl text-base font-medium transition-all duration-300 ${
                       isActive(link.path)
                         ? "text-[#00e5ff] bg-[#00e5ff]/5 border border-[#00e5ff]/20"
                         : "text-[#94a3b8] hover:text-white hover:bg-white/[0.03]"
@@ -162,6 +176,7 @@ export default function Navbar() {
                         isActive(link.path) ? "bg-[#00e5ff]" : "bg-transparent"
                       }`}
                     />
+                    {(() => { const Icon = navIcons[link.name]; return Icon ? <Icon size={16} /> : null; })()}
                     {link.name}
                   </Link>
                 </li>

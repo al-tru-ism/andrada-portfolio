@@ -185,9 +185,9 @@ export default function About() {
         label="// my-journey"
         subtitle="From discovering IT to becoming a Cybersecurity specialist — step by step."
       >
-        <div className="relative max-w-3xl mx-auto">
+        <div className="relative max-w-3xl mx-auto px-4">
           {/* Vertical line */}
-          <div className="absolute left-[18px] md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00e5ff]/40 via-[#00e5ff]/15 to-transparent" />
+          <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#00e5ff]/40 via-[#00e5ff]/15 to-transparent" />
 
           {timeline.map((item, i) => (
             <TimelineItem key={i} item={item} index={i} total={timeline.length} />
@@ -215,7 +215,7 @@ function TimelineItem({ item, index, total }) {
       style={{ transitionDelay: `${index * 120}ms` }}
     >
       {/* Glow dot */}
-      <div className={`absolute left-[18px] md:left-1/2 -translate-x-1/2 z-10 mt-1.5`}>
+      <div className={`absolute left-1/2 -translate-x-1/2 z-10 mt-1.5`}>
         <div className={`w-3 h-3 rounded-full ${isLast ? "bg-[#00ff9d]" : "bg-[#00e5ff]"} border-[3px] border-[#060a13]`} />
         {isVisible && (
           <div className={`absolute inset-0 rounded-full ${isLast ? "bg-[#00ff9d]" : "bg-[#00e5ff]"} animate-ping opacity-20`} />
@@ -224,8 +224,8 @@ function TimelineItem({ item, index, total }) {
 
       {/* Content Card */}
       <div
-        className={`ml-10 md:ml-0 md:w-[calc(50%-2.5rem)] ${
-          isLeft ? "md:mr-auto md:pr-0 md:text-right" : "md:ml-auto md:pl-0"
+        className={`w-[calc(50%-2.5rem)] ${
+          isLeft ? "mr-auto pr-0 text-right" : "ml-auto pl-0"
         }`}
       >
         <div className="glass rounded-xl p-5 glow-border card-hover group">

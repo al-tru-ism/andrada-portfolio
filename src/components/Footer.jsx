@@ -5,7 +5,6 @@ import { personalInfo } from "../data/portfolioData";
 const quickLinks = [
   { label: "About", to: "/about" },
   { label: "Projects", to: "/projects" },
-  { label: "Skills", to: "/skills" },
   { label: "Blog", to: "/blog" },
   { label: "Contact", to: "/contact" },
 ];
@@ -27,10 +26,10 @@ export default function Footer() {
       {/* Top glow line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#00e5ff]/20 to-transparent" />
 
-      <div className="max-w-6xl mx-auto px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
+      <div className="max-w-5xl mx-auto px-6 py-14">
+        <div className="flex flex-col md:flex-row items-start justify-evenly gap-12 text-center">
           {/* ── Brand ── */}
-          <div className="md:col-span-5">
+          <div className="flex flex-col items-center flex-1">
             <Link to="/" className="inline-flex items-center gap-2.5 mb-4 group">
               <div className="w-8 h-8 rounded-lg bg-[#00e5ff]/10 border border-[#00e5ff]/20 flex items-center justify-center group-hover:border-[#00e5ff]/40 transition-colors duration-300">
                 <Shield size={16} className="text-[#00e5ff]" />
@@ -52,7 +51,7 @@ export default function Footer() {
           </div>
 
           {/* ── Quick Links ── */}
-          <div className="md:col-span-3">
+          <div className="flex flex-col items-center flex-1">
             <h4 className="text-[10px] font-semibold text-[#64748b] uppercase tracking-[0.2em] mb-5">
               Navigation
             </h4>
@@ -72,11 +71,11 @@ export default function Footer() {
           </div>
 
           {/* ── Social ── */}
-          <div className="md:col-span-4">
+          <div className="flex flex-col items-center flex-1">
             <h4 className="text-[10px] font-semibold text-[#64748b] uppercase tracking-[0.2em] mb-5">
               Connect
             </h4>
-            <div className="flex gap-3">
+            <div className="flex gap-3 justify-center">
               {socials.map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
@@ -100,11 +99,11 @@ export default function Footer() {
         </div>
 
         {/* ── Bottom Bar ── */}
-        <div className="mt-12 pt-6 border-t border-[#1e293b]/40 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="mt-12 pt-6 border-t border-[#1e293b]/40 flex flex-col items-center justify-center gap-3 text-center">
           <p className="text-[11px] text-[#3a4560]">
             &copy; {currentYear} Andrada. All rights reserved.
           </p>
-          <p className="text-[11px] text-[#3a4560] flex items-center gap-1.5">
+          <p className="text-[11px] text-[#3a4560] flex items-center justify-center gap-1.5">
             Crafted with <Heart size={10} className="text-[#00e5ff]" /> using
             <span className="text-[#94a3b8]">React</span> &amp;
             <span className="text-[#94a3b8]">Tailwind CSS</span>
